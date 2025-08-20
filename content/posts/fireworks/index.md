@@ -10,4 +10,4 @@ tags:
 
 This is about **fireworks pictures I took**
 
-![afri7795](img/sejong.jpg)
+![afri7795](img/AFRI7795.jpg)
