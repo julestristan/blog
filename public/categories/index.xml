@@ -7,7 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>&amp;copy; Tristan Jules - All Rights Reserved</copyright>
-    <lastBuildDate>Fri, 04 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 20 Aug 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Voyage</title>
+      <link>http://localhost:1313/categories/voyage/</link>
+      <pubDate>Wed, 20 Aug 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/categories/voyage/</guid>
+      <description></description>
+      
+    </item>
     
     <item>
       <title>Test</title>
@@ -15,16 +25,6 @@
       <pubDate>Fri, 04 Jul 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/categories/test/</guid>
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>Voyage</title>
-      <link>http://localhost:1313/categories/voyage/</link>
-      <pubDate>Fri, 04 Jul 2025 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/categories/voyage/</guid>
       <description></description>
       
     </item>
