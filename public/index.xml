@@ -7,26 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>&amp;copy; Tristan Jules - All Rights Reserved</copyright>
-    <lastBuildDate>Wed, 20 Aug 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
-    
-    <item>
-      <title>Fireworks</title>
-      <link>http://localhost:1313/posts/fireworks/</link>
-      <pubDate>Wed, 20 Aug 2025 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/posts/fireworks/</guid>
-      <description></description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/posts/fireworks/featured.jpg" />
-    </item>
+    <lastBuildDate>Fri, 04 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>My trip to korea</title>
-      <link>http://localhost:1313/posts/trip-to-korea/</link>
+      <link>http://localhost:1313/posts/trip-to-japan/</link>
       <pubDate>Fri, 04 Jul 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/trip-to-korea/</guid>
+      <guid>http://localhost:1313/posts/trip-to-japan/</guid>
       <description></description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/posts/trip-to-korea/featured.jpg" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/posts/trip-to-japan/featured.jpg" />
     </item>
     
     <item>
