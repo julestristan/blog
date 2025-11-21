@@ -1,11 +1,51 @@
-<article class="max-w-full prose dark:prose-invert">
-  {{ with .Title }}
-    <header>
-      <h1>{{ . | emojify }}</h1>
+<article class="relative flex flex-col justify-center">
+
+    <header class="py-6 flex flex-col items-center w-full"> 
+        
+        {{ $disableImageOptimization := .Site.Params.disableImageOptimization | default false }}
+        {{ with .Site.Params.Author.image }}
+            {{ $authorImage := "" }}
+            {{ if or (strings.HasPrefix . "http:") (strings.HasPrefix . "https:") }}
+                {{ $authorImage = resources.GetRemote . }}
+            {{ else }}
+                {{ $authorImage = resources.Get . }}
+            {{ end }}
+            {{ if $authorImage }}
+                {{ $final := $authorImage }}
+                {{ if not $disableImageOptimization }}
+                    {{ $final = $authorImage.Fill (print "288x288 q" ( $.Site.Params.Author.imagequality | default "96" )) }}
+                {{ end }}
+                <img
+                    class="mb-2 h-36 w-36 rounded-full shadow-lg"
+                    width="144"
+                    height="144"
+                    alt="{{ $.Site.Params.Author.name | default `Author` }}"
+                    src="{{ $final.RelPermalink }}">
+            {{ end }}
+        {{ end }}
+        
+        <h1 class="text-4xl font-extrabold">
+            {{ .Site.Params.Author.name | default .Site.Title }}
+        </h1>
+        {{ with .Site.Params.Author.headline }}
+            <h2 class="text-xl text-neutral-500 dark:text-neutral-400">
+                {{ . | markdownify }}
+            </h2>
+        {{ end }}
+
+        <div class="mt-1 text-2xl">
+            {{ partial "author-links.html" . }}
+        </div>
+        
     </header>
-  {{ end }}
-  <section class="w-full">{{ .Content }}</section>
+    <hr class="w-full mx-auto mb-10 border-neutral-300 dark:border-neutral-600">
+    
+    <div class="prose dark:prose-invert w-full mx-auto max-w-7xl">
+        {{ .Content }} 
+    </div>
+
 </article>
+
 <section>
-  {{ partial "recent-articles/main.html" . }}
+    {{ partial "recent-articles/main.html" . }}
 </section>
