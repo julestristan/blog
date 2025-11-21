@@ -1,11 +1,14 @@
 ---
 title: "Fireworks"
-description: "Pictures of the firework in Arcachon (14/07/2025)"
+description: "\nTest\nTest\nTest"
 categories: Voyage
 date: 2025-08-20
 tags:
 - Photo
 - Arcachon
+stack: ["Hugo", "Tailwind CSS", "GitHub Pages", "JavaScript"]
+caracteristiques: ["Design Responsive", "Chargement Rapide", "SEO Optimisé"]
+duree_projet: "2 semaines"
 ---
 
 This is about **fireworks pictures I took**
