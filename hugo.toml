@@ -1,0 +1,47 @@
+baseURL = "https://julestristan.fr/"
+languageCode = "fr-fr"
+title = "Tristan Jules"
+theme = "PaperMod"
+enableRobotsTXT = true
+enableGitInfo = false
+
+[pagination]
+  pagerSize = 8
+
+[minify]
+  disableXML = true
+
+[params]
+  defaultTheme = "auto"
+  ShowReadingTime = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  ShowToc = true
+  TocOpen = false
+
+  [params.homeInfoParams]
+    Title = "Tristan Jules"
+    Content = "Alternant, futur Data Engineer (fin d'alternance : novembre 2027). Notes sur l'infra, le cloud, Docker et la donnée — en construisant mon propre VPS."
+
+  [[params.socialIcons]]
+    name = "github"
+    url = "https://github.com/julestristan"
+  [[params.socialIcons]]
+    name = "email"
+    url = "mailto:tristanjules7@gmail.com"
+
+[[menu.main]]
+  identifier = "posts"
+  name = "Articles"
+  url = "/posts/"
+  weight = 10
+
+[[menu.main]]
+  identifier = "about"
+  name = "À propos"
+  url = "/about/"
+  weight = 20
+
+[markup.highlight]
+  noClasses = false
+  style = "onedark"

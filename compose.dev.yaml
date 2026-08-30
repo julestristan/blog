@@ -1,0 +1,12 @@
+# Dev local : hugo server dans un conteneur, live reload. Rien à installer.
+#   docker compose -f compose.dev.yaml up
+# VS Code Remote forwarde le port 1313 automatiquement.
+services:
+  hugo:
+    build:
+      context: .
+      target: dev
+    volumes:
+      - .:/src
+    ports:
+      - "127.0.0.1:1313:1313"

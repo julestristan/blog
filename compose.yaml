@@ -1,0 +1,29 @@
+services:
+  blog:
+    image: ghcr.io/julestristan/blog:latest
+    build:
+      context: .
+      args:
+        HUGO_BASEURL: ${HUGO_BASEURL}
+    pull_policy: missing
+    restart: unless-stopped
+    networks:
+      - web
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.blog.rule=Host(`${BLOG_HOST}`)"
+      - "traefik.http.routers.blog.entrypoints=websecure"
+      - "traefik.http.routers.blog.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.blog.middlewares=security-headers@file"
+      - "traefik.http.services.blog.loadbalancer.server.port=80"
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:80/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+    mem_limit: 64m
+
+networks:
+  web:
+    external: true
