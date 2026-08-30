@@ -19,7 +19,7 @@ Premier article, surtout pour valider la chaîne de publication.
 
 ## Durcissement SSH
 
-Piège rencontré : `PasswordAuthentication no` dans `sshd_config` était **écrasé**
+**Piège rencontré** : `PasswordAuthentication no` dans `sshd_config` était **écrasé**
 par un fichier `sshd_config.d/50-cloud-init.conf`. Dans sshd, la première
 directive gagne, et les drop-ins sont inclus avant. La seule vérification fiable :
 
