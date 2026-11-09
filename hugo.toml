@@ -12,7 +12,9 @@ enableGitInfo = false
   disableXML = true
 
 [params]
-  defaultTheme = "auto"
+  defaultTheme = "light"
+  ShowPostNavLinks = true
+  ShowWordCount = false
   ShowReadingTime = true
   ShowBreadCrumbs = true
   ShowCodeCopyButtons = true
@@ -21,8 +23,7 @@ enableGitInfo = false
 
   [params.homeInfoParams]
     Title = "Tristan Jules"
-    Content = "Alternant, futur Data Engineer (fin d'alternance : novembre 2027). Notes sur l'infra, le cloud, Docker et la donnée — en construisant mon propre VPS."
-
+    Content = "Actuellement alternant et intéressé par **Data Engineer & DevOps** ⚙️ J'apprends en construisant : mon propre VPS, Docker, la CI/CD, le cloud et la donnée. Ici, je partage mes notes, mes galères et ce qui a fini par marcher."
   [[params.socialIcons]]
     name = "github"
     url = "https://github.com/julestristan"
