@@ -5,7 +5,8 @@ services:
       context: .
       args:
         HUGO_BASEURL: ${HUGO_BASEURL}
-    pull_policy: missing
+    # build from homelab local files
+    pull_policy: build
     restart: unless-stopped
     networks:
       - web

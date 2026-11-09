@@ -1,27 +1,35 @@
 # julestristan.fr — blog
 
-Site statique (Hugo + thème PaperMod), servi par nginx, déployé en CI/CD sur le VPS.
+Site statique (Hugo + thème PaperMod), servi par nginx derrière Traefik,
+hébergé sur mon PC.
 
 ## Architecture
 
 ```
-git push main
-   └─> GitHub Actions
+fichiers locaux
+   └─> docker compose up -d --build
          ├─ build image Docker multi-stage (hugo build -> nginx:alpine)
-         ├─ push -> ghcr.io/julestristan/blog:latest
-         └─ SSH VPS : cd ~/blog && git pull && docker compose pull && up -d
+         └─ 3 réplicas nginx derrière Traefik -> https://julestristan.fr
+
+git push main
+   └─> GitHub Actions : vérifie que le site compile
+                        + publie ghcr.io/julestristan/blog:latest
 ```
 
-Le VPS ne compile rien en prod : il tire une image déjà construite. 
+Le site en ligne est construit à partir des fichiers locaux, pas depuis GHCR
+(`pull_policy: build` dans `compose.yaml`).
 
-## Développement local
+## Workflow
 
 ```bash
-# avec un conteneur (rien à installer) :
+# 1. Écrire / modifier, avec aperçu en direct :
 docker compose -f compose.dev.yaml up      # http://localhost:1313, live reload
 
-# ou avec hugo installé :
-hugo server -D
+# 2. Mettre en ligne :
+docker compose up -d --build
+
+# 3. Garder l'historique :
+git add . && git commit -m "..." && git push
 ```
 
 ## Contenu
@@ -29,21 +37,9 @@ hugo server -D
 - `content/posts/*.md` — articles
 - `content/about.md` — page À propos
 - `hugo.toml` — config (menu, réseaux sociaux, thème)
+- `assets/css/extended/custom.css` — surcharges visuelles du thème
 
-## Déploiement
+## Configuration
 
-Automatique à chaque push sur `main`. Manuel : onglet Actions → *deploy* → *Run workflow*.
-
-### Secrets GitHub requis
-
-| Secret | Valeur |
-|---|---|
-| `SSH_HOST` | IP du VPS |
-| `SSH_USER` | `tristan` |
-| `SSH_KEY`  | clé privée de déploiement (publique dans `~/.ssh/authorized_keys` du VPS) |
-
-### Sur le VPS
-
-`~/blog/` est un clone de ce repo. L'image GHCR doit être publique
-(Packages → blog → Package settings → Change visibility → Public), sinon
-`docker login ghcr.io` sur le VPS.
+`.env` (voir `.env.example`) : `BLOG_HOST` et `HUGO_BASEURL`.
+Le réseau Docker `web` (partagé avec Traefik) doit exister.
