@@ -1,0 +1,341 @@
+/* =========================================================
+   Surcharges du thème PaperMod — palette, typo, cartes.
+   Le thème (sous-module) n'est pas modifié.
+   ========================================================= */
+
+/* ---------- Palette claire (par défaut) ---------- */
+:root {
+    --radius: 14px;
+    --main-width: 760px;
+
+    --theme: #faf8f4;            /* fond papier chaud */
+    --entry: #ffffff;
+    --primary: #231a14;
+    --secondary: #6b5d52;
+    --tertiary: #e4e0d8;
+    --content: #2e2520;
+    --code-block-bg: #221c18;
+    --code-bg: #f1ede6;
+    --border: #ebe6dd;
+
+    --accent: #c2410c;           /* orange brûlé (lisible sur fond clair) */
+    --accent-2: #f59e0b;         /* ambre */
+    --accent-grad-start: #ea580c;
+    --accent-soft: rgba(234, 88, 12, 0.09);
+    --on-accent: #ffffff;
+    --glow-1: rgba(249, 115, 22, 0.16);
+    --glow-2: rgba(245, 158, 11, 0.14);
+    --shadow: 0 1px 2px rgba(42, 30, 20, 0.04), 0 8px 24px rgba(42, 30, 20, 0.06);
+    --shadow-hover: 0 2px 4px rgba(42, 30, 20, 0.05), 0 16px 40px rgba(234, 88, 12, 0.16);
+}
+
+/* ---------- Palette sombre : bleu nuit plutôt que gris ---------- */
+:root[data-theme="dark"] {
+    --theme: #17120e;
+    --entry: #221a14;
+    --primary: #f6efe8;
+    --secondary: #bba99a;
+    --tertiary: #3a2e25;
+    --content: #e6dcd2;
+    --code-block-bg: #120e0b;
+    --code-bg: #2e241c;
+    --border: #33281f;
+
+    --accent: #fb923c;
+    --accent-2: #fbbf24;
+    --accent-grad-start: #f97316;
+    --accent-soft: rgba(251, 146, 60, 0.13);
+    --on-accent: #1c120a;
+    --glow-1: rgba(249, 115, 22, 0.18);
+    --glow-2: rgba(251, 191, 36, 0.10);
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.25);
+    --shadow-hover: 0 2px 4px rgba(0, 0, 0, 0.3), 0 16px 40px rgba(251, 146, 60, 0.18);
+}
+
+[data-theme="dark"] .list {
+    background: var(--theme);
+}
+
+/* ---------- Typographie ---------- */
+body {
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-feature-settings: "cv11", "ss01";
+    -webkit-font-smoothing: antialiased;
+}
+
+/* halo d'ambiance discret en haut de page */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0 0 auto 0;
+    height: 520px;
+    background:
+        radial-gradient(600px 300px at 15% -10%, var(--glow-1), transparent 70%),
+        radial-gradient(500px 280px at 90% -5%, var(--glow-2), transparent 70%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+code, pre, kbd {
+    font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+h1, h2, h3, .post-title, .entry-header h2 {
+    letter-spacing: -0.02em;
+}
+
+::selection {
+    background: var(--accent);
+    color: var(--on-accent);
+}
+
+/* ---------- En-tête ---------- */
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: color-mix(in srgb, var(--theme) 80%, transparent);
+    backdrop-filter: saturate(180%) blur(12px);
+    -webkit-backdrop-filter: saturate(180%) blur(12px);
+    border-bottom: 1px solid var(--border);
+}
+
+.logo a {
+    font-weight: 800;
+    background: linear-gradient(90deg, var(--accent-grad-start), var(--accent-2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+#menu a {
+    padding: 4px 10px;
+    border-radius: 999px;
+    transition: background 0.2s, color 0.2s;
+}
+
+#menu a:hover {
+    background: var(--accent-soft);
+    color: var(--accent);
+}
+
+#menu .active {
+    border-bottom: none;
+    color: var(--accent);
+    font-weight: 600;
+}
+
+/* ---------- Bloc d'accueil (hero) ---------- */
+.home-info {
+    min-height: 0;
+    margin-top: calc(var(--gap) * 1.5);
+    padding: 40px 36px;
+    border-radius: calc(var(--radius) + 6px);
+    background:
+        linear-gradient(var(--entry), var(--entry)) padding-box,
+        linear-gradient(135deg, var(--accent-grad-start), var(--accent-2)) border-box;
+    border: 1.5px solid transparent;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+
+.home-info::after {
+    content: "";
+    position: absolute;
+    right: -80px;
+    top: -80px;
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--accent-soft), transparent 70%);
+    pointer-events: none;
+}
+
+.home-info .entry-header h1 {
+    font-size: clamp(32px, 6vw, 46px);
+    font-weight: 800;
+    line-height: 1.1;
+}
+
+.home-info .entry-header h1::before {
+    content: "👋 Salut, moi c'est";
+    display: block;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--accent);
+    margin-bottom: 8px;
+}
+
+.home-info .entry-content {
+    margin-top: 14px;
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--secondary);
+}
+
+.home-info .entry-footer {
+    margin-top: 20px;
+}
+
+.social-icons a {
+    display: inline-flex;
+    padding: 8px !important;
+    margin-inline-end: 6px;
+    border-radius: 10px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    transition: transform 0.2s, background 0.2s, color 0.2s;
+}
+
+.social-icons a:hover {
+    transform: translateY(-2px);
+    background: var(--accent);
+    color: var(--on-accent);
+}
+
+/* ---------- Cartes d'articles ---------- */
+.post-entry {
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    overflow: hidden;
+}
+
+.post-entry::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg, var(--accent-grad-start), var(--accent-2));
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+.post-entry:hover,
+.post-entry:focus-within {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+    border-color: color-mix(in srgb, var(--accent) 35%, var(--border));
+}
+
+.post-entry:hover::before,
+.post-entry:focus-within::before {
+    opacity: 1;
+}
+
+.post-entry .entry-header h2 {
+    font-size: 22px;
+    font-weight: 700;
+    transition: color 0.2s;
+}
+
+.post-entry:hover .entry-header h2 {
+    color: var(--accent);
+}
+
+.entry-footer {
+    color: var(--secondary);
+}
+
+/* ---------- Page article ---------- */
+.post-title {
+    font-weight: 800;
+}
+
+.post-content a,
+.md-content a {
+    color: var(--accent);
+    box-shadow: none;
+    text-decoration: underline;
+    text-decoration-color: color-mix(in srgb, var(--accent) 40%, transparent);
+    text-underline-offset: 3px;
+    transition: text-decoration-color 0.2s;
+}
+
+.post-content a:hover,
+.md-content a:hover {
+    text-decoration-color: var(--accent);
+}
+
+.post-content h2 {
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+}
+
+.post-content blockquote {
+    border-inline-start: 4px solid var(--accent);
+    background: var(--accent-soft);
+    padding: 12px 18px;
+    border-radius: 0 10px 10px 0;
+}
+
+.post-content :not(pre) > code {
+    color: var(--accent);
+    background: var(--accent-soft);
+    border-radius: 6px;
+}
+
+.post-content pre,
+.post-content .highlight {
+    border-radius: 12px;
+}
+
+details.toc {
+    border-radius: var(--radius);
+    background: var(--entry);
+    border: 1px solid var(--border);
+}
+
+/* Tags en pastilles */
+.post-tags a,
+.terms-tags a {
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-weight: 500;
+}
+
+.post-tags a:hover,
+.terms-tags a:hover {
+    background: var(--accent);
+    color: var(--on-accent);
+    border-color: var(--accent);
+}
+
+.post-tags a::before { content: "#"; opacity: 0.6; }
+
+/* Navigation précédent/suivant & pagination */
+.paginav,
+.pagination a {
+    border-radius: var(--radius);
+}
+
+.pagination a {
+    background: linear-gradient(90deg, var(--accent-grad-start), var(--accent-2));
+}
+
+/* Bouton retour en haut */
+.top-link {
+    background: var(--accent);
+    color: var(--on-accent);
+    box-shadow: var(--shadow-hover);
+}
+
+.top-link svg { color: var(--on-accent); }
+
+/* ---------- Mobile ---------- */
+@media (max-width: 600px) {
+    .home-info {
+        padding: 28px 22px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        transition: none !important;
+    }
+}
